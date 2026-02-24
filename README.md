@@ -111,3 +111,6 @@ If you finish early or want an extra challenge, try one of these:
 - Stay curious. The unpredictability is intentional and part of the experience.
 
 When you finish, Playlist Chaos will feel more predictable, and you will have taken your first steps into AI-assisted debugging.
+
+# Summary
+Through this Week 1 Tinker activity, the core concept students needed to understand was how to navigate and debug a larger, pre-existing codebase rather than writing code from scratch. This exercise emphasizes approaching unfamiliar code with an exploration mindset and thinking from a user’s perspective to identify mismatches between expected and actual behavior. I think that students are most likely to struggle with feeling overwhelmed by the size of the project, as well as with debugging systematically and knowing where to start. AI was helpful for reviewing Git commands and guiding debugging steps, but it could be misleading when overused before fully understanding the bug independently. One important lesson is that students should attempt to reason through the issue first before asking AI for a direct fix. As a TF, I would guide students by asking structured questions about expected behavior and edge cases to help them narrow down the source of the issue without giving away the solution.
