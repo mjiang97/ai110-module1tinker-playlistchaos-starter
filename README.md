@@ -114,3 +114,29 @@ When you finish, Playlist Chaos will feel more predictable, and you will have ta
 
 # Summary
 Through this Week 1 Tinker activity, the core concept students needed to understand was how to navigate and debug a larger, pre-existing codebase rather than writing code from scratch. This exercise emphasizes approaching unfamiliar code with an exploration mindset and thinking from a user’s perspective to identify mismatches between expected and actual behavior. I think that students are most likely to struggle with feeling overwhelmed by the size of the project, as well as with debugging systematically and knowing where to start. AI was helpful for reviewing Git commands and guiding debugging steps, but it could be misleading when overused before fully understanding the bug independently. One important lesson is that students should attempt to reason through the issue first before asking AI for a direct fix. As a TF, I would guide students by asking structured questions about expected behavior and edge cases to help them narrow down the source of the issue without giving away the solution.
+
+---
+
+## Week 1 Tinker Activity Summary
+
+### What I explored
+
+I ran the app and tested adding songs with different genres and energy levels, changing the mood profile thresholds, using the search box in each playlist tab, trying Lucky Pick in all three modes, and reviewing the Stats and History sections.
+
+### Issues I found
+
+1. **Search was backwards** — `search_songs` checked if the song’s artist name was contained in the query string instead of the other way around. A search for "queen" only worked by coincidence (exact match), and partial searches like "qu" returned nothing.
+2. **Sidebar sliders ignored column layout** — The Hype min energy and Chill max energy sliders called `st.sidebar.slider()` inside `with col1/col2` blocks, so both sliders stacked instead of sitting side by side.
+3. **Lucky Pick excluded Mixed songs** — In `any` mode, `lucky_pick` only pulls from Hype and Chill, so Mixed songs can never be randomly selected.
+4. **Artist names normalized to lowercase** — `normalize_artist` lowercases all names, so "AC/DC" appears as "ac/dc" in the playlist display.
+
+### Fixes I made
+
+- Fixed the search direction in `search_songs` (`q in value` instead of `value in q`) so partial and substring searches work correctly.
+- Changed `st.sidebar.slider()` to `st.slider()` inside the column context blocks so the two energy sliders render side by side in the sidebar.
+- Added an empty-list guard in `random_choice_or_none` (already present via `if songs else None`).
+- Noted the lowercase artist issue as a known behavior — could be fixed by preserving original casing separately from the normalized comparison key.
+
+### What I learned
+
+AI-assisted debugging is most useful when you describe the *symptom* rather than guessing the cause. Pasting the function and describing what the app actually does (vs. what you expected) lets the assistant pinpoint the logic quickly. Small experiments — like trying a one-character search query — are a fast way to surface hidden assumptions in the code.
